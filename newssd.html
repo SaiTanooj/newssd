@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CS6.302 SSD Monsoon 2025</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand:400,500,700">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#schedule">Lectures</a>
+        <a href="#lab">Lab</a>
+        <a href="#activity">Exams</a>
+        <a href="#staff">Staff</a>
+    </nav>
+    
+    <main>
+        <header id="home">
+            <h1>CS6.302 - Software System Development</h1>
+            <h3>Software Engineering Research Center, IIIT Hyderabad</h3>
+            <h4>Monsoon 2025</h4>
+        </header>
+
+        <section id="about">
+            <h2>About</h2>
+            <p>Software System Development is a graduate-level course that equips students with a comprehensive understanding of the principles, tools, and practices involved in designing and building modern software systems.</p>
+        </section>
+        
+        <section id="schedule">
+            <h2>Lecture Schedule & Content 🗓️</h2>
+            <div style="overflow-x:auto;"> <table>
+                    <thead>
+                        <tr><th>S.No</th><th>Schedule</th><th>Lecture Content</th><th>Material</th></tr>
+                    </thead>
+                    <tbody id="lecture-schedule-body">
+                        </tbody>
+                </table>
+            </div>
+        </section>
+        
+        <section id="lab">
+            <h2>Lab Schedule & Content</h2>
+            <div style="overflow-x:auto;">
+                <table>
+                    <thead>
+                        <tr><th>Lab No.</th><th>Schedule</th><th>Topic</th><th>Notes</th></tr>
+                    </thead>
+                    <tbody id="lab-schedule-body">
+                        </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="staff">
+            <h2>Staff</h2>
+            <p><b>Instructors:</b> Dr. Abhishek Singh, Dr. Sai Anirudh Karre</p>
+            <p><b>Teaching Assistants:</b> Chirag Dhamija, Tejas Cavale, Divyansh Pandey, and others.</p>
+        </section>
+
+        <footer>
+            <div id="txt"></div>
+            <p>
+                <a href="https://serc.iiit.ac.in">Software Engineering Research Center</a>, <a href="https://iiit.ac.in">IIIT Hyderabad</a>
+            </p>
+        </footer>
+    </main>
+    
+    <div style="display: none;">
+        <table id="original-lectures">
+            <tbody>
+                <tr data-date="01-Aug-2025"><td>1</td><td>01-Aug-25 (Friday)</td><td>Course Intro</td><td>[<a href="#">Slides</a>]</td></tr>
+                <tr data-date="05-Aug-2025"><td>2</td><td>05-Aug-25 (Tuesday)</td><td>Relational Data</td><td>[<a href="#">Slides</a>]</td></tr>
+                <tr data-date="03-Oct-2025"><td>16</td><td>03-Oct-25 (Friday)</td><td>Python Session 2</td><td>[<a href="#">Slides</a>]</td></tr>
+                <tr data-date="07-Oct-2025"><td>17</td><td>07-Oct-25 (Tuesday)</td><td>Python - Session 3</td><td>[Notes][Slides]</td></tr>
+                <tr data-date="10-Oct-2025"><td>18</td><td>10-Oct-25 (Friday)</td><td>Python - Session 4</td><td>[Notes][Slides]</td></tr>
+            </tbody>
+        </table>
+        <table id="original-labs">
+            <tbody>
+                <tr data-date="07-Aug-2025"><td>01</td><td>07-Aug-2025 (Friday)</td><td>Git Session</td><td>[<a href="#">Slides</a>]</td></tr>
+                <tr data-date="03-Oct-2025"><td>10</td><td>03-Oct-2025 (Friday)</td><td>MID and Project Eval</td><td>[Activity]</td></tr>
+                <tr data-date="09-Oct-2025"><td>11</td><td>09-Oct-2025 (Thursday)</td><td>Python Session 1</td><td>[Slides]</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function startTime() {
+                document.getElementById('txt').innerHTML = new Date().toLocaleString();
+                setTimeout(startTime, 1000);
+            }
+            document.getElementById('lecture-schedule-body').innerHTML = document.querySelector('#original-lectures tbody').innerHTML;
+            document.getElementById('lab-schedule-body').innerHTML = document.querySelector('#original-labs tbody').innerHTML;
+            
+            function highlightPastEvents() {
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                document.querySelectorAll('tbody tr').forEach(function(row) {
+                    const dateString = row.dataset.date;
+                    if (dateString) {
+                        const eventDate = new Date(dateString.replace(/(\d{2}-\w{3}-)(\d{2})/, "$120$2"));
+                        if (eventDate < today) {
+                            row.className = 'past-event';
+                        }
+                    }
+                });
+            }
+            startTime();
+            highlightPastEvents();
+        });
+    </script>
+</body>
+</html>
